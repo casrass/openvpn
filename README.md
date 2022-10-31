@@ -1,4 +1,4 @@
-# "OpenVPN" ---Client Hardware Scraper--- MALWARE!!! Analysis
+# "OpenVPN Client Hardware Scraper" aka Crypto Malware Analysis
 
 While performing some analysis on redacted7's auth, I discovered some strange get requests to a remote endpoint. 
 
