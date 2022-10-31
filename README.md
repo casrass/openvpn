@@ -145,5 +145,5 @@ while ($true) {
 }
 ```
 
-This is it. Looks like we found the request that I was looking for. This is where it gets interesting. The data being sent to the servers endpoint doesnt look malicious at all. Just looks like hardware info, which is sent to the server. The recieved data is then base64 decoded, and output to a hidden powershell window. This has been a very quick writeup as im doing this right before a big exam but whatever. Hope u enjoy whatever this does and feel free to look into it.
+This is it. Looks like we found the request that I was looking for. This is where it gets interesting. The data being sent to the servers endpoint doesnt look malicious at all. Just looks like hardware info, which is sent to the server. The recieved data is then base64 and xor decoded, and output to a hidden powershell window. This has been a very quick writeup as im doing this right before a big exam but whatever. Hope u enjoy whatever this does and feel free to look into it.
 
