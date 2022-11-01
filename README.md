@@ -350,8 +350,13 @@ DATA = "77,90,144,0,3,0,0,0,4,0,0,0
 f = open("payload.bin", "wb")
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     for x in DATA.split(","):
         f.write(int(x).to_bytes(1, "big"))
+=======
+	for x in DATA.split(","):
+		f.write(int(x).to_bytes(1, "big"))
+>>>>>>> 05685680c09b9695888971feca7bd30ef3e778a1
 ```
 
 Ok now we have a binary we can analyse with DnSpy. Oh my where do I begin.
@@ -362,4 +367,8 @@ We can see calls to alot of WinAPI funtions handling clipboard data and the like
 
 ![image](https://user-images.githubusercontent.com/113079075/198958827-910cab97-91f1-4ac4-8c24-585b78f5ea04.png)
 
+<<<<<<< HEAD
 By the looks of it, it searches for bitcoin addresses in the victims clipboard, and replaces them with the attackers address. A crude way of stealing crypto! The rest of the binary is quite boring outside of this. These crypto addresses can be looked up to see exactly how much the attacker has stolen from victims. All up, excluding (get ready) 8 million usd of solana, the attacker stole about 150 thousand usd of various cryptocurrencies. This is excluding monero as there is no way of tracking the monero blockchain (lucky for some). Now that thats out of the way, the next place of interest has to be the endpoint.
+=======
+By the looks of it, it searches for bitcoin addresses in the victims clipboard, and replaces them with the attackers address. A crude way of stealing crypto! The rest of the binary is quite boring outside of this. These crypto addresses can be looked up to see exactly how much the attacker has stolen from victims. All up, excluding (get ready) 8 million usd of solana, the attacker stole about 150 thousand usd of various cryptocurrencies. This is excluding monero as there is no way of tracking the monero blockchain (lucky for some). Now that thats out of the way, the next place of interest has to be the endpoint.
+>>>>>>> 05685680c09b9695888971feca7bd30ef3e778a1
